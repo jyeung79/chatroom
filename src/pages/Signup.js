@@ -13,6 +13,22 @@ export default class Signup extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    };
+
+    async handleSubmit(event) {
+        event.preventDefault();
+        this.setState({ error: '' });
+        try {
+            await signup(this.state.email, this.state.password);
+        } catch (error) {
+            this.setState({ error: error.message });
+        }
+    }
     
     render() {
         return (
