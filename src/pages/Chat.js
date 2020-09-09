@@ -70,27 +70,29 @@ export default class Chat extends Component {
     render() {
         return (
             <div>
-                <div className="chats" ref={this.myRef}>
+
+                
+                <div className="chat-area" ref={this.myRef}>
                     {this.state.loadingChats ? 
-                        <div role="status">
+                        <div className="spinner-border text-success" role="status">
                             <span className="sr-only">Loading...</span> 
                         </div>
                     : ''}
-                </div>
-                {this.state.chats.map((chat) => {
-                    return <p key={chat.timestamp} className="chat-bubble">
-                        {chat.content}
-                    <br />
-                    <span className="chat-time">{this.formatTime(chat.timestamp)}</span>
-                    </p>
-                })}
-                <form onSubmit={this.handleSubmit}>
-                    <textarea name="content" onChange={this.handleChange} value={this.state.content}></textarea>
-                    {this.state.error ? <p>{this.state.writeError}</p> : null}
-                    <button type="submit">Send</button>
-                </form>
-                <div>
-                    Login in as: <strong>{this.state.user.email}</strong>
+                    {this.state.chats.map((chat) => {
+                        return <p key={chat.timestamp} className={"chat-bubble " + (this.state.user.uid === chat.uid ? "current-user" : "")}>
+                            {chat.content}
+                        <br />
+                        <span className="chat-time float-right">{this.formatTime(chat.timestamp)}</span>
+                        </p>
+                    })}
+                    <form onSubmit={this.handleSubmit} className="mx-3">
+                        <textarea className="form-control" name="content" onChange={this.handleChange} value={this.state.content}></textarea>
+                        {this.state.error ? <p className="btn btn-submit px-5 mt-4">{this.state.writeError}</p> : null}
+                        <button type="submit">Send</button>
+                    </form>
+                    <div className="py-5 mx-3">
+                        Login in as: <strong className="text-info">{this.state.user.email}</strong>
+                    </div>
                 </div>
             </div>
         )

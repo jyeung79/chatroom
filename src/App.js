@@ -4,12 +4,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Redirect,
-} from "react-router-dom";
+} from 'react-router-dom';
 import Home from './pages/Home';
 import Chat from './pages/Chat';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { auth } from './services/firebase';
+import './styles.css';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -59,15 +60,18 @@ class App extends Component {
   }
 
   render() {
-    return this.state.loading === true ? <h2>Loading...</h2> : (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
-          <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
-          <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
-        </Switch>
-      </Router>
+    return this.state.loading === true ? (
+      <div className="spinner-border text-success" role="status">
+        <span className="sr-only">Loading...</span> 
+      </div> ) : (
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
+            <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
+            <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
+          </Switch>
+        </Router>
     );
   }
 }
