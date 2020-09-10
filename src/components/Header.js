@@ -9,14 +9,14 @@ import Container from 'react-bootstrap/Container';
 
 function Header() {
   return (
-    <Navbar collapseOnSelect bg="dark" variant="dark" expand="md" fixed="top">
-      <Container fluid>
+    <Container fluid="md">
+      <Navbar bg="primary" variant="dark" expand="md" fixed="top">
         <Navbar.Brand>
-          <Link to="/">Chatroom</Link>
+          <Link className="text-white bold" to="/">Chatroom</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar" />
         <Navbar.Collapse id="basic-navbar">
-          <Nav className="align-items-center justify-content-end w-100">
+          <Nav className="align-items-center justify-content-end">
             {auth().currentUser
               ? <>
                   <LinkContainer to="/login">
@@ -37,8 +37,8 @@ function Header() {
             }
           </Nav>
         </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      </Navbar>
+    </Container>
   );
 }
 
