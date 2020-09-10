@@ -70,7 +70,7 @@ export default class Chat extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container-md">
                 <Header />
                 <div className="chat-area" ref={this.myRef}>
                     {this.state.loadingChats ? 
@@ -91,7 +91,7 @@ export default class Chat extends Component {
                         <button type="submit">Send</button>
                     </form>
                     <div className="py-5 mx-3">
-                        Login in as: <strong className="text-info">{this.state.user.email}</strong>
+                        Logged in as: <strong className="text-info">{this.state.user.email}</strong>
                     </div>
                 </div>
             </div>
