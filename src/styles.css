@@ -96,11 +96,17 @@ body {
 }
 
 .form-control {
-  width: 60%;
+  width: 100%;
+  height: auto;
+  resize: vertical;
 }
 
 .form-control:focus {
   box-shadow: none;
+}
+
+.form-control:active {
+  height: auto;
 }
 
 .btn {

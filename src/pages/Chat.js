@@ -86,9 +86,9 @@ export default class Chat extends Component {
                         </p>
                     })}
                     <form onSubmit={this.handleSubmit} className="mx-3">
-                        <textarea className="form-control" name="content" onChange={this.handleChange} value={this.state.content}></textarea>
-                        {this.state.error ? <p className="btn btn-submit px-5 mt-4">{this.state.writeError}</p> : null}
-                        <button type="submit">Send</button>
+                        <input className="form-control" name="content" onChange={this.handleChange} value={this.state.content}></input>
+                        {this.state.error ? <p className="text-warning">{this.state.writeError}</p> : null}
+                        <button className="btn btn-submit px-5 mt-4" type="submit">Send</button>
                     </form>
                     <div className="py-5 mx-3">
                         Logged in as: <strong className="text-info">{this.state.user.email}</strong>
